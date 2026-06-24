@@ -1,0 +1,195 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="profile-wrapper">
+
+    <!-- ================= PROFILE CARD ================= -->
+
+    <div class="profile-card">
+
+        <div class="profile-image">
+
+            {% if profile.profile_picture %}
+                <img src="{{ profile.profile_picture.url }}">
+            {% else %}
+                <img src="{% static 'images/default_avatar.jpg' %}">
+            {% endif %}
+
+        </div>
+
+        <div class="profile-content">
+
+            <h1>{{ request.user.username }}</h1>
+
+            {% if profile.bio %}
+
+                <p>{{ profile.bio }}</p>
+
+            {% else %}
+
+                <p class="empty-bio">
+                    ✨ Tell people something about yourself.
+                </p>
+
+            {% endif %}
+
+            <div class="profile-buttons">
+
+                <a href="{% url 'edit_profile' %}" class="edit-btn">
+
+                    <i class="fa-solid fa-pen"></i>
+
+                    Edit Profile
+
+                </a>
+
+                <button class="share-btn">
+
+                    <i class="fa-solid fa-share-nodes"></i>
+
+                    Share
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ================= STATS ================= -->
+
+    <div class="stats-container">
+
+        <div class="stat-card">
+
+            <h2>{{ total_posts }}</h2>
+
+            <span>Posts</span>
+
+        </div>
+
+        <div class="stat-card">
+
+            <h2>{{ total_likes }}</h2>
+
+            <span>Total Likes</span>
+
+        </div>
+
+        <div class="stat-card">
+
+            <h2>{{ request.user.date_joined|date:"Y" }}</h2>
+
+            <span>Member Since</span>
+
+        </div>
+
+    </div>
+
+    <!-- ================= TITLE ================= -->
+
+    <div class="section-heading">
+
+        <h2>Recent Posts</h2>
+
+    </div>
+
+    <!-- ================= POSTS ================= -->
+
+    <div class="posts-grid">
+
+        {% for post in posts %}
+
+        <div class="post-card">
+
+            {% if post.image %}
+
+            <img src="{{ post.image.url }}">
+
+            {% endif %}
+
+            <div class="post-content">
+
+                <p>
+
+                    {{ post.content|truncatechars:120 }}
+
+                </p>
+
+                <div class="post-footer">
+
+    <span>
+        ❤️ {{ post.likes.count }}
+    </span>
+
+    <span>
+        {{ post.created_at|date:"d M Y" }}
+    </span>
+
+</div>
+
+<div class="post-buttons">
+
+    <a
+        href="{% url 'edit_post' post.id %}"
+        class="edit-post"
+    >
+        Edit
+    </a>
+
+    <form
+        method="POST"
+        action="{% url 'delete_post' post.id %}"
+    >
+        {% csrf_token %}
+
+        <button
+            type="submit"
+            class="delete-post"
+            onclick="return confirm('Delete this post?')"
+        >
+            Delete
+        </button>
+
+    </form>
+
+</div>
+
+            </div>
+
+        </div>
+
+        {% empty %}
+
+        <div class="empty-posts">
+
+            <img src="{% static 'images/default_avatar.jpg' %}">
+
+            <h3>No Posts Yet</h3>
+
+            <p>
+
+                Share your first post with everyone.
+
+            </p>
+
+            <br>
+
+            <a href="{% url 'create_post' %}" class="btn">
+
+                Create Post
+
+            </a>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+{% endblock %}

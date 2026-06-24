@@ -1,0 +1,417 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="feed-container">
+
+    <!-- ================= CREATE POST CARD ================= -->
+
+    {% if user.is_authenticated %}
+
+    <div class="create-post-card">
+
+        <div class="create-header">
+
+            <div class="user-avatar">
+
+                {% if user.profile.profile_picture %}
+                    <img src="{{ user.profile.profile_picture.url }}">
+                {% else %}
+                    <img src="{% static 'images/default_avatar.jpg' %}">
+                {% endif %}
+
+            </div>
+
+            <a href="{% url 'create_post' %}" class="create-input">
+
+                What's on your mind, {{ user.username }}?
+
+            </a>
+
+        </div>
+
+        <div class="create-options">
+
+            <a href="{% url 'create_post' %}">
+                <i class="fa-solid fa-image"></i>
+                Photo
+            </a>
+
+            <a href="{% url 'create_post' %}">
+                <i class="fa-solid fa-pen"></i>
+                Create Post
+            </a>
+
+        </div>
+
+    </div>
+
+    {% endif %}
+
+    <!-- ================= POSTS ================= -->
+
+    {% for post in posts %}
+
+    <div class="post-card">
+
+        <!-- Header -->
+
+        <div class="post-header">
+
+            <div class="post-user">
+
+    <div>
+
+        <a href="{% url 'user_profile' post.user.username %}">
+            <strong>{{ post.user.username }}</strong>
+        </a>
+
+        <br>
+
+        <small>{{ post.created_at|timesince }} ago</small>
+
+    </div>
+
+</div>
+
+        </div>
+
+        <!-- Caption -->
+
+        {% if post.content %}
+
+        <div class="post-caption">
+
+            {{ post.content }}
+
+        </div>
+
+        {% endif %}
+
+        <!-- Image -->
+
+        
+{% if post.image %}
+
+<div class="post-image">
+
+    <img
+        src="{{ post.image.url }}"
+        alt="Post Image"
+        class="popup-image"
+    >
+
+</div>
+
+{% endif %}
+
+       
+
+        <!-- Stats -->
+
+        <div class="post-stats">
+
+            ❤️ <span id="likes-{{ post.id }}">{{ post.likes.count }}</span> Likes
+
+            &nbsp;&nbsp;&nbsp;
+
+            💬 <span id="comments-count-{{ post.id }}">{{ post.comments.count }}</span> Comments
+
+        </div>
+
+        <!-- Like Button -->
+
+        {% if user.is_authenticated %}
+
+        <button class="like-btn" data-post="{{ post.id }}">
+        ❤ Like
+        </button>
+        {% endif %}
+
+        <!-- Comments -->
+
+        <div class="comment-section">
+
+            <div id="comments-{{ post.id }}">
+
+                {% for comment in post.comments.all %}
+
+                <div class="comment">
+
+                    <strong>
+
+                        <a href="{% url 'user_profile' comment.user.username %}">
+
+                            {{ comment.user.username }}
+
+                        </a>
+
+                    </strong>
+
+                    {{ comment.text }}
+
+                </div>
+
+                {% empty %}
+
+                <div class="no-comments">
+
+                    No comments yet.
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+            {% if user.is_authenticated %}
+
+            <form
+                class="comment-form"
+                data-post="{{ post.id }}"
+            >
+
+                {% csrf_token %}
+
+                <input
+                    type="text"
+                    name="text"
+                    placeholder="Write a comment..."
+                    required
+                >
+
+                <button type="submit">
+
+                    Post
+
+                </button>
+
+            </form>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+    {% empty %}
+
+    <div class="empty-feed">
+
+        <img src="{% static 'images/default_avatar.jpg' %}">
+
+        <h2>No Posts Yet</h2>
+
+        <p>
+
+            Be the first person to share something.
+
+        </p>
+
+        {% if user.is_authenticated %}
+
+        <a href="{% url 'create_post' %}" class="btn">
+
+            Create First Post
+
+        </a>
+
+        {% endif %}
+
+    </div>
+
+    {% endfor %}
+
+</div>
+<!-- Image Popup -->
+
+<div id="imageModal" class="image-modal">
+
+    <span class="close-modal">&times;</span>
+
+    <img id="modalImage" class="modal-content">
+
+</div>
+
+<script>
+
+function getCookie(name){
+
+    let cookieValue=null;
+
+    if(document.cookie && document.cookie!==""){
+
+        const cookies=document.cookie.split(";");
+
+        for(let cookie of cookies){
+
+            cookie=cookie.trim();
+
+            if(cookie.startsWith(name+"=")){
+
+                cookieValue=decodeURIComponent(cookie.substring(name.length+1));
+
+                break;
+
+            }
+
+        }
+
+    }
+
+    return cookieValue;
+
+}
+
+const csrftoken=getCookie("csrftoken");
+
+document.querySelectorAll(".like-btn").forEach(button=>{
+
+button.onclick=function(){
+
+const postId=this.dataset.post;
+
+fetch(`/like/${postId}/`,{
+
+method:"POST",
+
+headers:{
+
+"X-CSRFToken":csrftoken
+
+}
+
+})
+
+.then(res=>res.json())
+
+.then(data=>{
+
+document.getElementById(`likes-${postId}`).innerHTML=data.likes;
+
+if(data.liked){
+
+    button.classList.add("liked");
+
+}else{
+
+    button.classList.remove("liked");
+
+}
+
+});
+
+};
+
+});
+
+document.querySelectorAll(".comment-form").forEach(form=>{
+
+form.addEventListener("submit",function(e){
+
+e.preventDefault();
+
+const postId=this.dataset.post;
+
+const input=this.querySelector("input");
+
+const text=input.value;
+
+fetch(`/comment/${postId}/`,{
+
+method:"POST",
+
+headers:{
+
+"X-CSRFToken":csrftoken,
+
+"Content-Type":"application/x-www-form-urlencoded"
+
+},
+
+body:new URLSearchParams({
+
+text:text
+
+})
+
+})
+
+.then(res=>res.json())
+
+.then(data=>{
+
+const comments=document.getElementById(`comments-${postId}`);
+
+const count=document.getElementById(`comments-count-${postId}`);
+
+const noComment=comments.querySelector(".no-comments");
+
+if(noComment){
+
+noComment.remove();
+
+}
+
+comments.innerHTML+=`
+
+<div class="comment">
+
+<strong>
+
+<a href="/user/${data.username}/">
+
+${data.username}
+
+</a>
+
+</strong>
+
+${data.text}
+
+</div>
+
+`;
+
+count.innerHTML=parseInt(count.innerHTML)+1;
+
+input.value="";
+
+});
+
+});
+
+});
+const modal = document.getElementById("imageModal");
+const modalImg = document.getElementById("modalImage");
+
+document.querySelectorAll(".popup-image").forEach(img => {
+
+    img.addEventListener("click", function(){
+
+        modal.classList.add("active");
+        modalImg.src = this.src;
+
+    });
+
+});
+
+document.querySelector(".close-modal").addEventListener("click", function(){
+
+    modal.classList.remove("active");
+
+});
+
+modal.addEventListener("click", function(e){
+
+    if(e.target === modal){
+
+        modal.classList.remove("active");
+
+    }
+
+});
+</script>
+
+{% endblock %}

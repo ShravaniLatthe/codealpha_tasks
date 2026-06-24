@@ -1,0 +1,606 @@
+/* ==========================================
+                HOME FEED
+========================================== */
+
+.feed-container{
+
+    max-width:700px;
+
+    margin:0 auto;
+
+}
+
+/* ==========================================
+            CREATE POST CARD
+========================================== */
+
+.create-post-card{
+
+    background:#fff;
+
+    border-radius:20px;
+
+    padding:20px;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.08);
+
+    margin-bottom:30px;
+
+}
+
+.create-header{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+}
+
+.user-avatar img{
+
+    width:55px;
+
+    height:55px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    border:3px solid #2563eb;
+
+}
+
+.create-input{
+
+    flex:1;
+
+    background:#f1f5f9;
+
+    padding:15px 20px;
+
+    border-radius:30px;
+
+    color:#64748b;
+
+    transition:.3s;
+
+    font-size:15px;
+
+}
+
+.create-input:hover{
+
+    background:#e2e8f0;
+
+}
+
+.create-options{
+
+    display:flex;
+
+    justify-content:space-around;
+
+    margin-top:20px;
+
+    padding-top:15px;
+
+    border-top:1px solid #e5e7eb;
+
+}
+
+.create-options a{
+
+    color:#2563eb;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.create-options a:hover{
+
+    color:#7c3aed;
+
+}
+
+.create-options i{
+
+    margin-right:8px;
+
+}
+
+/* ==========================================
+                POST CARD
+========================================== */
+
+.post-card{
+
+    background:#fff;
+
+    border-radius:18px;
+
+    margin-bottom:30px;
+
+    overflow:hidden;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+.post-card:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:0 18px 45px rgba(37,99,235,.15);
+
+}
+
+/* ==========================================
+            POST HEADER
+========================================== */
+
+.post-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:18px 22px;
+
+}
+
+.post-user{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+}
+
+.avatar{
+
+    width:55px;
+
+    height:55px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    border:3px solid #2563eb;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.15);
+
+    flex-shrink:0;
+
+}
+
+.post-user h4{
+
+    margin-bottom:3px;
+
+    color:#1f2937;
+
+}
+
+.post-user small{
+
+    color:#6b7280;
+
+}
+
+/* ==========================================
+            CAPTION
+========================================== */
+
+.post-caption{
+
+    padding:0 22px 18px;
+
+    font-size:16px;
+
+    line-height:1.7;
+
+    color:#333;
+
+}
+/* ==========================================
+            IMAGE
+========================================== */
+
+.post-image{
+
+    width:100%;
+
+    background:#f3f4f6;
+
+}
+
+.post-image img{
+
+    width:100%;
+
+    max-height:500px;
+
+    object-fit:cover;
+
+    display:block;
+
+    transition:.4s;
+
+}
+
+.post-card:hover .post-image img{
+
+    transform:scale(1.02);
+
+}
+
+/* ==========================================
+            STATS
+========================================== */
+
+.post-stats{
+
+    padding:15px 22px;
+
+    color:#64748b;
+
+    font-size:14px;
+
+    border-bottom:1px solid #e5e7eb;
+
+}
+
+/* ==========================================
+            ACTIONS
+========================================== */
+
+.post-actions{
+
+    display:flex;
+
+    justify-content:center;
+
+    padding:12px;
+
+}
+
+.action-btn{
+
+    width:100%;
+
+    text-align:center;
+
+    padding:12px;
+
+    border-radius:10px;
+
+    font-weight:600;
+
+    color:#334155;
+
+    transition:.3s;
+
+}
+
+.action-btn:hover{
+
+    background:#eff6ff;
+
+    color:#2563eb;
+
+}
+
+/* ==========================================
+            COMMENT FORM
+========================================== */
+
+.comment-form{
+
+    display:flex;
+
+    gap:10px;
+
+    padding:18px;
+
+}
+
+.comment-form input{
+
+    flex:1;
+
+}
+
+.comment-form button{
+
+    white-space:nowrap;
+
+}
+
+/* ==========================================
+            COMMENTS
+========================================== */
+
+.comments{
+
+    padding:0 20px 20px;
+
+}
+
+.comment{
+
+    background:#f8fafc;
+
+    padding:12px 15px;
+
+    border-radius:10px;
+
+    margin-bottom:10px;
+
+    line-height:1.6;
+
+}
+
+.comment strong{
+
+    color:#2563eb;
+
+}
+
+.no-comments{
+
+    color:#94a3b8;
+
+    text-align:center;
+
+    padding:15px;
+
+}
+
+/* ==========================================
+            EMPTY FEED
+========================================== */
+
+.empty-feed{
+
+    background:white;
+
+    border-radius:20px;
+
+    padding:60px 30px;
+
+    text-align:center;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+}
+
+.empty-feed img{
+
+    width:180px;
+
+    margin:0 auto 25px;
+
+}
+
+.empty-feed h2{
+
+    margin-bottom:15px;
+
+    color:#1f2937;
+
+}
+
+.empty-feed p{
+
+    color:#64748b;
+
+    margin-bottom:25px;
+
+}
+
+/* ==========================================
+            RESPONSIVE
+========================================== */
+
+@media(max-width:768px){
+
+.feed-container{
+
+    width:100%;
+
+    max-width:700px;
+
+    margin:40px auto;
+
+}
+
+.comment-form{
+
+    flex-direction:column;
+
+}
+
+.comment-form button{
+
+    width:100%;
+
+}
+
+.post-image img{
+
+    width:100%;
+
+    max-height:500px;
+
+    object-fit:cover;
+
+    display:block;
+
+}
+
+.create-options{
+
+    flex-direction:column;
+
+    gap:12px;
+
+}
+
+}
+
+/* Like Button */
+
+.like-btn{
+
+    background:#ffffff;
+
+    border:1px solid #d1d5db;
+
+    color:#374151;
+
+    padding:10px 20px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    margin:10px 15px;
+
+    display:inline-block;
+
+}
+
+.like-btn:hover{
+
+    background:#fef2f2;
+
+    color:#ef4444;
+
+}
+
+.like-btn.liked{
+
+    background:#fee2e2;
+
+    color:#ef4444;
+
+    border-color:#ef4444;
+
+}
+
+.like-btn i{
+
+    color:#64748b;
+
+    transition:.3s;
+
+}
+
+.like-btn:hover{
+
+    background:#fff5f5;
+
+    border-color:#ef4444;
+
+}
+
+.like-btn:hover i{
+
+    color:#ef4444;
+
+}
+
+/* Liked State */
+
+.like-btn.liked{
+
+    background:#fee2e2;
+
+    border-color:#ef4444;
+
+    color:#ef4444;
+
+}
+
+.like-btn.liked i{
+
+    color:#ef4444;
+
+}
+
+.like-btn:hover{
+
+transform:scale(1.15);
+
+}
+/* ===========================
+   POST USER AVATAR
+=========================== */
+
+
+.post-user{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+}
+
+.post-user div{
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+}
+
+.image-modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.9);
+    z-index:999999;
+
+    justify-content:center;
+    align-items:center;
+}
+
+.image-modal.active{
+    display:flex;
+}
+
+.modal-content{
+    max-width:90%;
+    max-height:90%;
+    width:auto;
+    height:auto;
+    object-fit:contain;
+    border-radius:12px;
+}
+
+.close-modal{
+    position:absolute;
+    top:20px;
+    right:30px;
+    color:white;
+    font-size:40px;
+    cursor:pointer;
+    z-index:1000000;
+}

@@ -1,0 +1,499 @@
+/* ==========================================
+            GOOGLE FONT & RESET
+========================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+
+    font-family:'Poppins',sans-serif;
+
+    background:#f4f7fb;
+
+    color:#1f2937;
+
+    min-height:100vh;
+
+    display:flex;
+
+    flex-direction:column;
+}
+
+/* ==========================================
+                LINKS
+========================================== */
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+/* ==========================================
+                NAVBAR
+========================================== */
+
+.navbar{
+
+    position:sticky;
+
+    top:0;
+
+    z-index:1000;
+
+    background:white;
+
+    height:75px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:0 50px;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.08);
+}
+
+/* Logo */
+
+.logo{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    font-size:28px;
+
+    font-weight:700;
+
+    color:#2563eb;
+}
+
+.logo i{
+
+    font-size:30px;
+}
+
+/* Search */
+
+.nav-center{
+
+    width:35%;
+}
+
+.search-box{
+
+    width:35%;
+
+}
+
+.search-box form{
+
+    display:flex;
+
+    align-items:center;
+
+}
+
+.search-box input{
+
+    flex:1;
+
+    padding:12px 18px;
+
+    border:none;
+
+    outline:none;
+
+    background:#eef2ff;
+
+    border-radius:30px 0 0 30px;
+
+}
+
+.search-btn{
+
+    width:55px;
+
+    border-radius:0 30px 30px 0;
+
+    padding:12px;
+
+}
+
+.search-btn i{
+
+    color:white;
+
+}
+
+/* Menu */
+
+.nav-right ul{
+
+    display:flex;
+
+    list-style:none;
+
+    align-items:center;
+
+    gap:25px;
+}
+
+.nav-right ul li{
+
+    display:flex;
+
+    align-items:center;
+}
+
+.nav-right a{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    color:#334155;
+
+    font-weight:500;
+
+    transition:.3s;
+}
+
+.nav-right a:hover{
+
+    color:#2563eb;
+
+    transform:translateY(-2px);
+}
+
+.username{
+
+    background:#2563eb;
+
+    color:white;
+
+    padding:10px 16px;
+
+    border-radius:30px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    font-weight:600;
+}
+
+/* ==========================================
+            MAIN CONTAINER
+========================================== */
+
+.main-container{
+
+    width:90%;
+
+    max-width:1250px;
+
+    margin:40px auto;
+
+    flex:1;
+}
+
+/* ==========================================
+                CARDS
+========================================== */
+
+.card{
+
+    background:white;
+
+    border-radius:20px;
+
+    padding:25px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+    transition:.3s;
+}
+
+.card:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:0 15px 35px rgba(0,0,0,.12);
+}
+
+/* ==========================================
+                BUTTONS
+========================================== */
+
+button,
+.btn{
+
+    border:none;
+
+    outline:none;
+
+    cursor:pointer;
+
+    padding:12px 24px;
+
+    border-radius:12px;
+
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+
+    color:white;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    transition:.3s;
+}
+
+button:hover,
+.btn:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:0 10px 25px rgba(37,99,235,.30);
+}
+
+/* ==========================================
+                INPUTS
+========================================== */
+
+input,
+textarea{
+
+    width:100%;
+
+    padding:14px 18px;
+
+    border:1px solid #dbe4f0;
+
+    border-radius:12px;
+
+    font-size:15px;
+
+    outline:none;
+
+    transition:.3s;
+
+    background:white;
+}
+
+input:focus,
+textarea:focus{
+
+    border-color:#2563eb;
+
+    box-shadow:0 0 0 3px rgba(37,99,235,.15);
+}
+
+textarea{
+
+    resize:none;
+}
+
+/* ==========================================
+            FLASH MESSAGES
+========================================== */
+
+.message-container{
+
+    width:90%;
+
+    max-width:1200px;
+
+    margin:25px auto;
+}
+
+.message{
+
+    padding:15px 20px;
+
+    border-radius:12px;
+
+    margin-bottom:15px;
+
+    font-weight:600;
+}
+
+.success{
+
+    background:#dcfce7;
+
+    color:#166534;
+}
+
+.error{
+
+    background:#fee2e2;
+
+    color:#991b1b;
+}
+
+.warning{
+
+    background:#fef3c7;
+
+    color:#92400e;
+}
+
+.info{
+
+    background:#dbeafe;
+
+    color:#1e40af;
+}
+
+/* ==========================================
+                FOOTER
+========================================== */
+
+footer{
+
+    margin-top:60px;
+
+    background:white;
+
+    text-align:center;
+
+    padding:35px;
+
+    box-shadow:0 -5px 15px rgba(0,0,0,.05);
+}
+
+.footer-content h3{
+
+    color:#2563eb;
+
+    margin-bottom:10px;
+}
+
+.footer-content p{
+
+    color:#64748b;
+
+    margin-bottom:8px;
+}
+
+.footer-content small{
+
+    color:#94a3b8;
+}
+
+/* ==========================================
+            IMAGE STYLING
+========================================== */
+
+img{
+
+    max-width:100%;
+
+    display:block;
+}
+
+/* ==========================================
+            SCROLLBAR
+========================================== */
+
+::-webkit-scrollbar{
+
+    width:10px;
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#2563eb;
+
+    border-radius:20px;
+}
+
+::-webkit-scrollbar-track{
+
+    background:#e2e8f0;
+}
+
+/* ==========================================
+            RESPONSIVE
+========================================== */
+
+@media(max-width:1000px){
+
+.navbar{
+
+    padding:15px 20px;
+
+    flex-wrap:wrap;
+
+    height:auto;
+}
+
+.nav-center{
+
+    width:100%;
+
+    margin:15px 0;
+}
+
+.nav-right ul{
+
+    flex-wrap:wrap;
+
+    justify-content:center;
+
+    gap:15px;
+}
+
+.main-container{
+
+    width:95%;
+}
+
+}
+
+@media(max-width:700px){
+
+.logo{
+
+    font-size:22px;
+}
+
+.search-box input{
+
+    font-size:14px;
+}
+
+.username{
+
+    display:none;
+}
+
+.nav-right a span{
+
+    display:none;
+}
+
+.nav-right a{
+
+    font-size:20px;
+}
+
+}
