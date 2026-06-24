@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="hero">
+
+    <h1>Welcome To TechStore</h1>
+
+    <p>
+        Best Electronics At Affordable Prices
+    </p>
+<form method="GET" class="search-form">
+
+    <input
+        type="text"
+        name="q"
+        placeholder="Search products..."
+        class="search-box">
+
+    <button
+        type="submit"
+        class="btn search-btn">
+        Search
+    </button>
+
+</form>
+<br>
+
+<select
+class="category-filter"
+onchange="location=this.value">
+
+    <option value="/">
+        All Categories
+    </option>
+
+    {% for cat in categories %}
+
+    <option value="?q={{ cat.name }}">
+        {{ cat.name }}
+    </option>
+
+    {% endfor %}
+
+</select>
+</div>
+<section class="features">
+
+    <div class="feature-box">
+        🚚 Fast Delivery
+    </div>
+
+    <div class="feature-box">
+        🔒 Secure Payment
+    </div>
+
+    <div class="feature-box">
+        🎁 Best Offers
+    </div>
+
+    <div class="feature-box">
+        ⭐ Premium Quality
+    </div>
+
+</section>
+<div class="products">
+
+{% for product in products %}
+
+<div class="card">
+
+      {% if product.image %}
+<img
+    src="{{ product.image.url }}"
+    alt="{{ product.name }}"
+    class="product-image">
+{% endif %}
+    <h2>{{ product.name }}</h2>
+
+    <p>{{ product.description }}</p>
+
+    <br>
+
+    <div class="price">
+
+        ₹{{ product.price }}
+
+    </div>
+
+    <br>
+
+    <a href="{% url 'product_detail' product.id %}">
+
+        <button class="btn">
+
+            View Details
+
+        </button>
+
+    </a>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="product-detail-container">
+
+    <div class="product-image-section">
+        {% if product.image %}
+        <img src="{{ product.image.url }}" alt="{{ product.name }}">
+        {% endif %}
+    </div>
+
+    <div class="product-info-section">
+
+        <h1>{{ product.name }}</h1>
+
+        <p class="product-description">
+            {{ product.description }}
+        </p>
+
+        <h2 class="product-price">
+            ₹{{ product.price }}
+        </h2>
+
+        <div class="product-buttons">
+
+            <a href="{% url 'add_to_cart' product.id %}">
+                <button class="cart-btn">
+                    🛒 Add To Cart
+                </button>
+            </a>
+
+            <a href="/">
+                <button class="buy-now-btn">
+                    Continue Shopping
+                </button>
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
