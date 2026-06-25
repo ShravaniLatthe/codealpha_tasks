@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="dashboard">
+
+    <div class="dashboard-header">
+
+        <h1>🚀 TechStore Admin Dashboard</h1>
+
+        <p>
+            Welcome {{ user.username }}
+        </p>
+
+    </div>
+
+    <div class="stats-grid">
+
+        <div class="stat-card">
+            <div class="icon">📦</div>
+            <h2>{{ products }}</h2>
+            <p>Total Products</p>
+        </div>
+
+        <div class="stat-card">
+            <div class="icon">📂</div>
+            <h2>{{ categories }}</h2>
+            <p>Total Categories</p>
+        </div>
+
+        <div class="stat-card">
+            <div class="icon">🛒</div>
+            <h2>{{ orders }}</h2>
+            <p>Total Orders</p>
+        </div>
+
+        <div class="stat-card">
+            <div class="icon">👥</div>
+            <h2>{{ users }}</h2>
+            <p>Total Users</p>
+        </div>
+
+    </div>
+
+    <div class="quick-actions">
+
+        <h2>Quick Actions</h2>
+
+        <div class="action-grid">
+
+            <a href="/admin/store/product/add/">
+                <button class="action-btn">
+                    ➕ Add Product
+                </button>
+            </a>
+
+            <a href="/admin/store/category/add/">
+                <button class="action-btn">
+                    ➕ Add Category
+                </button>
+            </a>
+
+            <a href="/admin/store/product/">
+                <button class="action-btn">
+                    📦 Manage Products
+                </button>
+            </a>
+
+            <a href="/admin/store/category/">
+                <button class="action-btn">
+                    📂 Manage Categories
+                </button>
+            </a>
+
+            <a href="/admin/store/order/">
+                <button class="action-btn">
+                    🛒 View Orders
+                </button>
+            </a>
+
+            <a href="/admin/auth/user/">
+                <button class="action-btn">
+                    👥 Manage Users
+                </button>
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

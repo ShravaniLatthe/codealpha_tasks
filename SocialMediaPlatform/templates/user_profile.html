@@ -1,0 +1,255 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="profile-wrapper">
+
+<div class="profile-card">
+
+<div class="profile-image">
+
+{% if profile.profile_picture %}
+
+<img src="{{ profile.profile_picture.url }}">
+
+{% else %}
+
+<img src="{% static 'images/default_avatar.jpg' %}">
+
+{% endif %}
+
+</div>
+
+<div class="profile-content">
+
+<h1>
+
+{{ profile_user.username }}
+
+</h1>
+
+<p>
+
+{{ profile.bio }}
+
+</p>
+
+{% if is_own_profile %}
+
+<a href="{% url 'edit_profile' %}" class="edit-btn">
+
+Edit Profile
+
+</a>
+
+{% else %}
+
+<form
+    method="POST"
+    action="{% url 'follow_user' profile_user.username %}"
+>
+
+    {% csrf_token %}
+
+    {% if is_following %}
+
+        <button
+            class="share-btn"
+            type="submit"
+        >
+
+            Unfollow
+
+        </button>
+
+    {% else %}
+
+        <button
+            class="edit-btn"
+            type="submit"
+        >
+
+            Follow
+
+        </button>
+
+    {% endif %}
+
+</form>
+
+{% endif %}
+
+</div>
+
+</div>
+
+<div class="stats-container">
+
+<div class="stat-card">
+
+<h2>
+
+{{ total_posts }}
+
+</h2>
+
+<span>
+
+Posts
+
+</span>
+</div>
+
+<div class="stat-card">
+
+    <h2>
+
+        {{ profile.followers.count }}
+
+    </h2>
+
+    <span>
+
+        Followers
+
+    </span>
+
+</div>
+
+<div class="stat-card">
+
+    <h2>
+
+        {{ profile.following.count }}
+
+    </h2>
+
+    <span>
+
+        Following
+
+    </span>
+
+</div>
+
+</div>
+
+<div class="section-heading">
+
+<h2>
+
+Posts
+
+</h2>
+
+</div>
+
+<div class="posts-grid">
+
+{% for post in posts %}
+
+<div class="post-card">
+
+{% if post.image %}
+
+<img
+    src="{{ post.image.url }}"
+    class="popup-image"
+    alt="Post Image"
+>
+
+{% endif %}
+
+<div class="post-content">
+
+<p>
+
+{{ post.content }}
+
+</p>
+
+<div class="post-footer">
+
+<span>
+
+❤️ {{ post.likes.count }}
+
+</span>
+
+<span>
+
+{{ post.created_at|date:"d M Y" }}
+
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+{% empty %}
+
+<div class="empty-posts">
+
+<h3>
+
+No Posts Yet
+
+</h3>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+</div>
+
+<!-- Image Popup -->
+
+<div id="imageModal" class="image-modal">
+
+    <span class="close-modal">&times;</span>
+
+    <img id="modalImage" class="modal-content">
+
+</div>
+
+<script>
+
+const modal = document.getElementById("imageModal");
+
+const modalImg = document.getElementById("modalImage");
+
+document.querySelectorAll(".popup-image").forEach(img => {
+
+    img.addEventListener("click", function(){
+
+        modal.classList.add("active");
+
+        modalImg.src = this.src;
+
+    });
+
+});
+
+document.querySelector(".close-modal").addEventListener("click", function(){
+
+    modal.classList.remove("active");
+
+});
+
+modal.addEventListener("click", function(e){
+
+    if(e.target === modal){
+
+        modal.classList.remove("active");
+
+    }
+
+});
+
+</script>
+{% endblock %}

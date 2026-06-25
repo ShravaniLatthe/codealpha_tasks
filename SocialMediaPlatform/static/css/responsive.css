@@ -1,0 +1,92 @@
+@media(max-width:1000px){
+
+.navbar{
+
+flex-direction:column;
+
+gap:20px;
+
+padding:20px;
+
+}
+
+.search-box{
+
+width:100%;
+
+}
+
+.nav-links{
+
+flex-wrap:wrap;
+
+justify-content:center;
+
+}
+
+.container{
+
+width:95%;
+
+}
+
+}
+
+@media(max-width:600px){
+
+.logo{
+
+font-size:22px;
+
+}
+
+.nav-links{
+
+gap:12px;
+
+}
+
+.nav-links a{
+
+font-size:14px;
+
+}
+
+button{
+
+width:100%;
+
+}
+}
+
+@media(max-width:900px){
+
+.profile-info{
+
+    flex-direction:column;
+
+    align-items:center;
+
+    text-align:center;
+
+    margin-top:-60px;
+}
+
+.profile-left{
+
+    flex-direction:column;
+
+    align-items:center;
+}
+
+.stats{
+
+    margin-top:25px;
+}
+
+.profile-posts{
+
+    grid-template-columns:1fr;
+}
+
+}

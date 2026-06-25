@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="auth-container">
+
+    <div class="auth-card edit-profile-card">
+
+        <h2>
+
+            <i class="fa-solid fa-user-pen"></i>
+
+            Edit Profile
+
+        </h2>
+
+        <form method="POST" enctype="multipart/form-data">
+
+            {% csrf_token %}
+
+            {% if profile.profile_picture %}
+
+                <img
+                    src="{{ profile.profile_picture.url }}"
+                    class="edit-avatar"
+                >
+
+            {% else %}
+
+                <img
+                    src="{% static 'images/default_avatar.jpg' %}"
+                    class="edit-avatar"
+                >
+
+            {% endif %}
+
+            <textarea
+                name="bio"
+                rows="5"
+                placeholder="Write something about yourself..."
+            >{{ profile.bio }}</textarea>
+
+            <label>
+
+                Upload New Profile Picture
+
+            </label>
+
+            <input
+                type="file"
+                name="profile_picture"
+                accept="image/*"
+            >
+
+            <button>
+
+                Save Changes
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}
